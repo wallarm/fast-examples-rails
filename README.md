@@ -1,24 +1,40 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Example of integration Wallarm FAST with the rails app using rspec, capybara and selenium.
 
-Things you may want to cover:
+## How to run specs localy
 
-* Ruby version
+Install docker and docker-compose
 
-* System dependencies
+Get your UUID and Secret key:
+https://docs.wallarm.com/en/admin-en/api-creds-en.html#get-your-uuid
 
-* Configuration
+Create your FAST node here:
+https://my.wallarm.com/nodes
 
-* Database creation
+```sh
+export UUID=<YOUR WALLARM UUID>
+export SECRET=<YOUR WALLARM SECRET>
+export CLIENTID=<YOUR WALLARM CLIENTID>
+export NODEID=<YOUR WALLARM NODEID>
+export TOKEN=<YOUR WALLARM NODE TOKEN>
 
-* Database initialization
+sudo -E docker-compose build
+sudo -E docker-compose up -d fast selenium
+sudo -E docker-compose run --use-aliases app-test bundle exec rspec spec/features/posts_spec.rb
+sudo -E docker-compose down
+```
 
-* How to run the test suite
+## Intergation with Circle CI
 
-* Services (job queues, cache servers, search engines, etc.)
+Create a project and pass following ENV variables:
+```
+UUID <YOUR WALLARM UUID>
+SECRET <YOUR WALLARM SECRET>
+CLIENTID <YOUR WALLARM CLIENTID>
+NODEID <YOUR WALLARM NODEID>
+TOKEN <YOUR WALLARM NODE TOKEN>
+```
 
-* Deployment instructions
-
-* ...
+Example builds:
+https://circleci.com/gh/wallarm/fast-examples-rails/
