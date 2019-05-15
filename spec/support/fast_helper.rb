@@ -7,7 +7,7 @@ module FastHelper
   TEST_RUN_FINAL_STATES = %w[failed passed interrupted].freeze
 
   def create_test_run
-    url = 'https://api.wallarm.com/v1/test_run'
+    url = "https://#{ENV['WALLARM_API_HOST']}/v1/test_run"
 
     response = RestClient.post url, test_run_params, auth_headers
 
@@ -26,7 +26,7 @@ module FastHelper
     # TODO: check for FAST node exported all recorded baselined
     sleep 8
 
-    url = "https://api.wallarm.com/v1/test_record/#{@test_record_id}/action/stop"
+    url = "https://#{ENV['WALLARM_API_HOST']}/v1/test_record/#{@test_record_id}/action/stop"
 
     RestClient.post url, {}, auth_headers
   end
@@ -61,18 +61,15 @@ module FastHelper
 
   def auth_headers
     {
-      'X-WallarmAPI-UUID'   => ENV['WALLARM_UUID'],
-      'X-WallarmAPI-Secret' => ENV['WALLARM_SECRET']
+      'X-WallarmApi-Token' => ENV['WALLARM_API_TOKEN']
     }
   end
 
   def test_run_params
     {
-      'name'      => 'FAST Rails example',
-      'desc'      => 'rails, rspec, capybara example',
-      'type'      => 'node',
-      'node_id'   => ENV['NODE_ID'],
-      'clientid'  => ENV['CLIENT_ID']
+      'name' => 'FAST Rails example',
+      'desc' => 'rails, rspec, capybara example',
+      'type' => 'node'
     }
   end
 end

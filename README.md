@@ -13,10 +13,6 @@ Create your FAST node here:
 https://my.wallarm.com/nodes
 
 ```sh
-export UUID=<YOUR WALLARM UUID>
-export SECRET=<YOUR WALLARM SECRET>
-export CLIENTID=<YOUR WALLARM CLIENTID>
-export NODEID=<YOUR WALLARM NODEID>
 export TOKEN=<YOUR WALLARM NODE TOKEN>
 
 sudo -E docker-compose build
@@ -29,10 +25,6 @@ sudo -E docker-compose down
 
 Create a project and pass following ENV variables:
 ```
-UUID <YOUR WALLARM UUID>
-SECRET <YOUR WALLARM SECRET>
-CLIENTID <YOUR WALLARM CLIENTID>
-NODEID <YOUR WALLARM NODEID>
 TOKEN <YOUR WALLARM NODE TOKEN>
 ```
 

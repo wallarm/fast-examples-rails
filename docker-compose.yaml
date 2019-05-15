@@ -10,10 +10,8 @@ services:
       - fast
     environment:
       CAPYBARA_SERVER_HOST: app-test
-      WALLARM_UUID: ${UUID}
-      WALLARM_SECRET: ${SECRET}
-      CLIENT_ID: ${CLIENTID}
-      NODE_ID: ${NODEID}
+      WALLARM_API_TOKEN: ${TOKEN}
+      WALLARM_API_HOST: api.wallarm.com
     ports:
       - '3000:3000'
     networks:
