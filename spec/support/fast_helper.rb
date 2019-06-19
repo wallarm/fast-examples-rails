@@ -32,7 +32,7 @@ module FastHelper
   end
 
   def current_test_run
-    url = "https://api.wallarm.com/v1/test_run/#{@test_run_id}"
+    url = "https://#{ENV['WALLARM_API_HOST']}/v1/test_run/#{@test_run_id}"
 
     response  = RestClient.get url, auth_headers
     resp_body = JSON.parse(response.body)['body']
@@ -44,20 +44,30 @@ module FastHelper
 
     test_run = current_test_run
 
+    link = frontend_url + '/testing/testruns/' + @test_run_id.to_s
+
     puts
     case current_test_run['state']
     when 'failed'
-      puts 'FAST tests are failed'.red
+      puts "FAST tests have failed #{link}".red
       exit 1
     when 'interrupted'
-      puts 'FAST tests are interrupted'.red
+      puts "FAST tests have been interrupted #{link}".red
       exit 1
     when 'passed'
-      puts 'FAST tests are passed'.green
+      puts "FAST tests have passed #{link}".green
     end
   end
 
   private
+
+  def frontend_url
+    url = "https://#{ENV['WALLARM_API_HOST']}/v1/user"
+
+    response = RestClient.post url, {}, auth_headers
+
+    JSON.parse(response.body)['body']['frontend_url']
+  end
 
   def auth_headers
     {
