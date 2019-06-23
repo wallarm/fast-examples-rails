@@ -18,8 +18,9 @@ module FastHelper
 
     sleep 1 until current_test_run['node_active']
 
-    # TODO: check for FAST node started recordind baselines
-    sleep 8
+    if current_test_run.key?('ready_for_recording')
+      sleep 1 until current_test_run['ready_for_recording']
+    end
   end
 
   def stop_test_record
