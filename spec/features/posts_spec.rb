@@ -16,9 +16,6 @@ RSpec.describe "Posts", type: :feature do
     fill_in "Name", with: post.name
     fill_in "Title", with: post.title
     click_on "Create Post"
-
-    assert_text "Post was successfully created"
-    click_on "Back"
   end
 
   it "updating a Post" do
