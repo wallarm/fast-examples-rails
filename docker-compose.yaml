@@ -6,23 +6,21 @@ services:
     build:
       context: ./.
       dockerfile: Dockerfile
-    links:
-      - fast
     environment:
       CAPYBARA_SERVER_HOST: app-test
-      WALLARM_API_TOKEN: ${TOKEN}
-      WALLARM_API_HOST: api.wallarm.com
     ports:
       - '3000:3000'
     networks:
       main:
         aliases:
           - app-test
+
   fast:
     image: wallarm/fast
     environment:
       WALLARM_API_TOKEN: ${TOKEN}
       WALLARM_API_HOST: api.wallarm.com
+      CI_MODE: recording
     ports:
       - '8080:8080'
     networks:
