@@ -35,6 +35,14 @@ jobs:
             docker-compose build
 
       - run:
-          name: Run specs
+          name: Run specs & record baselines
           command: |
-            docker-compose up -d fast selenium && docker-compose run --name app-test --service-ports app-test bundle exec rspec spec/features/posts_spec.rb
+            docker-compose up -d fast selenium \
+            && sleep 5 \
+            && docker-compose run --name app-test --service-ports app-test bundle exec rspec spec/features/posts_spec.rb
+
+      - run:
+          name: Run security tests
+          command: |
+            docker-compose up -d app-test \
+            && docker-compose run --name fast -e CI_MODE=testing -e TEST_RUN_URI=http://app-test:3000 fast
