@@ -24,7 +24,7 @@ sudo -E docker-compose down
 
 # Run security specs based on recorded baselines
 sudo -E docker-compose up -d app-test
-sudo -E docker-compose run --name fast -e CI_MODE=testing -e TEST_RUN_URI=http://app-test:3000 fast
+sudo -E docker-compose run --rm -e CI_MODE=testing -e TEST_RUN_URI=http://app-test:3000 fast
 sudo -E docker-compose down
 ```
 

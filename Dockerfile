@@ -25,5 +25,6 @@ COPY ./Rakefile /app/Rakefile
 COPY ./config.ru /app/config.ru
 COPY ./.rspec /app/.rspec
 
+RUN bundle exec rails db:migrate
 ENTRYPOINT ["bundle", "exec"]
 CMD ["rails s"]
