@@ -21,7 +21,7 @@ services:
       WALLARM_API_TOKEN: ${TOKEN}
       WALLARM_API_HOST: api.wallarm.com
       CI_MODE: recording
-      TEST_RUN_POLICY_ID: 129
+      # TEST_RUN_POLICY_ID: 129
     ports:
       - '8080:8080'
     networks:
