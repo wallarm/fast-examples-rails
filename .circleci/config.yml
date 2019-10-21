@@ -1,6 +1,6 @@
 version: 2.1
 orbs:
-  fast: wallarm/fast@dev:0.1.8
+  fast: wallarm/fast@dev:0.1.9
 jobs:
   build:
     machine:
@@ -30,4 +30,4 @@ jobs:
       - fast/run_security_tests:
           test_app_uri: http://$APP_TEST_HOST:3000
           test_record_id: "3612" # use your test_record_id
-          policy_id: "129"
+          policy_id: "129" # use your policy_id

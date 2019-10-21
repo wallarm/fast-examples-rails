@@ -1,10 +1,12 @@
 # README
 
-Example of integration Wallarm FAST with the rails app using rspec, capybara and selenium.
+Example of integration Wallarm FAST with the rails app using FAST orb (plugin for CircleCI).
 
-## How to run specs localy
+## How to create test record locally
 
-Install docker and docker-compose
+To use this example you will need to make a test_record.
+
+Install docker
 
 Get your UUID and Secret key:
 https://docs.wallarm.com/en/admin-en/api-creds-en.html#get-your-uuid
@@ -13,18 +15,13 @@ Create your FAST node here:
 https://my.wallarm.com/nodes
 
 ```sh
-export TOKEN=<YOUR WALLARM NODE TOKEN>
+export WALLARM_API_TOKEN=<YOUR WALLARM NODE TOKEN>
 
 sudo -E docker-compose build
 
-# Run specs & record baselines
+# Run specs & record baselines. You will find test_record_id in logs. 
 sudo -E docker-compose up -d fast selenium
 sudo -E docker-compose run --use-aliases app-test bundle exec rspec spec/features/posts_spec.rb
-sudo -E docker-compose down
-
-# Run security specs based on recorded baselines
-sudo -E docker-compose up -d app-test
-sudo -E docker-compose run --rm -e CI_MODE=testing -e TEST_RUN_URI=http://app-test:3000 fast
 sudo -E docker-compose down
 ```
 
@@ -32,11 +29,11 @@ sudo -E docker-compose down
 
 Create a project and pass following ENV variables:
 ```
-TOKEN <YOUR WALLARM NODE TOKEN>
+WALLARM_API_TOKEN <YOUR WALLARM NODE TOKEN>
 ```
 
 Example builds:
-https://circleci.com/gh/wallarm/fast-examples-rails/
+https://circleci.com/gh/wallarm/fast-examples-rails/tree/orb_example
 
 
 ## Previous versions
