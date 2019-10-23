@@ -1,6 +1,6 @@
 version: 2.1
 orbs:
-  fast: wallarm/fast@dev:0.1.9
+  fast: wallarm/fast@dev:0.1.18
 jobs:
   build:
     machine:
@@ -19,15 +19,8 @@ jobs:
           command: |
             docker run -d --name app-test -p 3000:3000 app-test
 
-      # On this step we need to save ip-address of application
-      #    which is determined in 'bridge' docker network by deafult.
-      # To use env-variable between Circle CI steps we need to save it in $BASH_ENV. 
-      - run:
-          name: Set application ip into env variable
-          command: |
-            echo "export APP_TEST_HOST=$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' app-test)" >> $BASH_ENV
-
       - fast/run_security_tests:
-          test_app_uri: http://$APP_TEST_HOST:3000
+          app_port: "3000"
           test_record_id: "3612" # use your test_record_id
           policy_id: "129" # use your policy_id
+          wallarm_api_host: api.wallarm.com
