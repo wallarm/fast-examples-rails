@@ -37,6 +37,9 @@ class PostsController < ApplicationController
         format.json { render json: @post.errors, status: :unprocessable_entity }
       end
     end
+
+    # NOTE: We can add vuln to fail build. Also comment all previous code in this method.
+    # render html: post_params.to_s.html_safe
   end
 
   # PATCH/PUT /posts/1
