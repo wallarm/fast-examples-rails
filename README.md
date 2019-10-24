@@ -1,6 +1,6 @@
 # README
 
-Example of integration Wallarm FAST with the rails app using rspec, capybara and selenium.
+This is example of integration Wallarm FAST with the rails app using rspec, capybara and selenium.
 
 ## How to run specs localy
 
