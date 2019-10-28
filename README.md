@@ -13,7 +13,7 @@ Create your FAST node here:
 https://my.wallarm.com/nodes
 
 ```sh
-export TOKEN=<YOUR WALLARM NODE TOKEN>
+export WALLARM_API_TOKEN=<YOUR WALLARM NODE TOKEN>
 
 sudo -E docker-compose build
 
@@ -32,7 +32,7 @@ sudo -E docker-compose down
 
 Create a project and pass following ENV variables:
 ```
-TOKEN <YOUR WALLARM NODE TOKEN>
+WALLARM_API_TOKEN <YOUR WALLARM NODE TOKEN>
 ```
 
 Example builds:
