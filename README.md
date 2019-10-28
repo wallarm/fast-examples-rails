@@ -1,6 +1,10 @@
 # README
 
-Example of integration Wallarm FAST with the rails app using rspec, capybara and selenium.
+This is example of integration Wallarm FAST with the rails app using rspec, capybara and selenium.
+
+Build without vuln (should be success): [![CircleCI](https://circleci.com/gh/wallarm/fast-examples-rails/tree/master.svg?style=svg)](https://circleci.com/gh/wallarm/fast-examples-rails/tree/master)
+
+Build with vuln (should fail): [![CircleCI](https://circleci.com/gh/wallarm/fast-examples-rails/tree/feature%2Fvuln.svg?style=svg)](https://circleci.com/gh/wallarm/fast-examples-rails/tree/feature%2Fvuln)
 
 ## How to run specs localy
 
@@ -13,7 +17,7 @@ Create your FAST node here:
 https://my.wallarm.com/nodes
 
 ```sh
-export TOKEN=<YOUR WALLARM NODE TOKEN>
+export WALLARM_API_TOKEN=<YOUR WALLARM NODE TOKEN>
 
 sudo -E docker-compose build
 
@@ -32,7 +36,7 @@ sudo -E docker-compose down
 
 Create a project and pass following ENV variables:
 ```
-TOKEN <YOUR WALLARM NODE TOKEN>
+WALLARM_API_TOKEN <YOUR WALLARM NODE TOKEN>
 ```
 
 Example builds:
