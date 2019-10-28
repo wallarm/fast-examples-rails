@@ -2,6 +2,10 @@
 
 This is example of integration Wallarm FAST with the rails app using rspec, capybara and selenium.
 
+Build without vuln (should be success): [![CircleCI](https://circleci.com/gh/wallarm/fast-examples-rails/tree/master.svg?style=svg)](https://circleci.com/gh/wallarm/fast-examples-rails/tree/master)
+
+Build with vuln (should fail): [![CircleCI](https://circleci.com/gh/wallarm/fast-examples-rails/tree/feature%2Fvuln.svg?style=svg)](https://circleci.com/gh/wallarm/fast-examples-rails/tree/feature%2Fvuln)
+
 ## How to run specs localy
 
 Install docker and docker-compose
