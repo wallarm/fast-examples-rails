@@ -2,6 +2,9 @@
 
 Example of integration Wallarm FAST with the rails app using FAST orb (plugin for CircleCI).
 
+Orb is described here: 
+https://circleci.com/orbs/registry/orb/wallarm/fast
+
 ## How to create test record locally
 
 To use this example you will need to make a test_record.
